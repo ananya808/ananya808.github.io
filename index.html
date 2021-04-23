@@ -13,6 +13,36 @@
     <script type="text/processing">
     
       /*  INSERT CODE HERE */
+      boolean paused;
+void setup() {
+	size(1200,1000);
+}
+
+void draw() {
+	if (paused)  return;
+noStroke();
+	background(0);
+	for (int j = 0; j < height; j += 20)
+for (int i = 0; i < width; i += 20)
+	cell(i,j);
+}
+
+void cell(float xPos, float yPos) {
+	float noiseValue = noise(xPos/250, yPos/250, millis()*0.001);
+	if (noiseValue < 0.3)
+		noiseValue = 0.3;
+//if (noiseValue > 0.7)
+//noiseValue = 0.7;
+	noiseValue = map(noiseValue, 0.3,0.7, 0,1);
+	fill(0,noiseValue * 160,noiseValue * 200);
+	rect(xPos, yPos, 20,20);
+}
+  void keyPressed() {
+ 
+if (key== 'p'){
+  paused ^= true; 
+}}
+ 
 
     </script>
     <canvas id="sketch" style="border: 1px solid black;"></canvas>
