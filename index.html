@@ -13,35 +13,40 @@
     <script type="text/processing">
     
       /*  INSERT CODE HERE */
-      boolean paused;
+    
+float r;
+float frames= 0;
+
 void setup() {
-	size(1200,1000);
-}
-
-void draw() {
-	if (paused)  return;
-noStroke();
-	background(0);
-	for (int j = 0; j < height; j += 20)
-for (int i = 0; i < width; i += 20)
-	cell(i,j);
-}
-
-void cell(float xPos, float yPos) {
-	float noiseValue = noise(xPos/250, yPos/250, millis()*0.001);
-	if (noiseValue < 0.3)
-		noiseValue = 0.3;
-//if (noiseValue > 0.7)
-//noiseValue = 0.7;
-	noiseValue = map(noiseValue, 0.3,0.7, 0,1);
-	fill(0,noiseValue * 160,noiseValue * 200);
-	rect(xPos, yPos, 20,20);
-}
-  void keyPressed() {
  
-if (key== 'p'){
-  paused ^= true; 
-}}
+  size(1200, 800);
+  background(255);
+  colorMode(HSB);
+  frameRate(255);
+
+  
+  }
+
+void draw(){
+     r++;
+   
+
+for (int i = 0; i < 50; i = i + 1) {                         
+for (int j = 0; j < 100; j = j + 1) { 
+strokeWeight(2);
+fill(255,15);
+ stroke(r*.08,200,r+20,100);
+push();
+translate(i*30,j*30);
+rotate(radians(r+i*mouseX));
+rect(i*60, j*60, 40, 40);   
+rect(i*40, j*40, 30, 30);   
+ pop();}}
+ 
+if (r > 3600) { 
+    r = 0;
+  
+  }}
  
 
     </script>
