@@ -15,108 +15,24 @@
     
       /*  INSERT CODE HERE */
 
-boolean paused;
- 
-Painter newpaint;
+float scale; // Declare a variable of the type "float" and name it "scale".
 
-
-
-//brush size
-float d = 20;
-
-
-color colour;
-float circ = 2;
-float alpha;
-int total = 800;
 void setup() {
-  size(800, 800);
-
-beginRecord(PDF, "page_" + int(random(1000)) + ".pdf");
-background(0);
-  newpaint = new Painter();
-
+  size(700, 700);   // Set the size of the screen to 700 by 700.
+background(255); // Set the background to white. 
 }
 
 void draw() {
+
+  scale = random(50, 650); // Pick a random value between 50 and 650 and assign it to "scale".
+                           
+  fill(random(255),random(255),random(255),1); // Remove the fill color.   
+  stroke(0, 10); // Set the stroke to black. 
+  ellipse(350, 350, scale, scale); 
+  for (int i=0; i<70; i= i+1){
+    point(scale, 350);// Draw the ellipse and use "scale" to set the width and the height.
   
-    if (paused)  return;
-   if (keyPressed && key == 'q') {
-    noStroke();
-    fill(0, 20);
-    rect(mouseX, mouseY, random(200), random(200));
-  }
-
-  colour = newpaint.colorChanger();
-  fill(colour);
-
-
-  newpaint.paint();
-
-   
-  }
-
-
-class Painter {
-
-  //color changer
-  color c1, c2, c3;
-  float change;
-
-  Painter() {
-  
-    change = 0;
-
-    c1 = #185474;
-    c2 = #ee5d84;
-    c3 = #f8ac95;
-  }
-
-  color colorChanger() {
-    color cF1 = lerpColor(c1, c2, change % 1);
-    color cF2 = lerpColor(c2, c3, change % 1);
-    color cF3 = lerpColor(c3, c1, change % 1);
-    color colour = c1;
-    if (int(change) % 3 == 0) { 
-      colour = cF1;
-    } else if (int(change) % 3 == 1) {
-      colour = cF2;
-    } else if (int(change) % 3 == 2) {
-      colour = cF3;
-    }
-    change += 0.005;
-    return colour;
-  }
-
-  void paint() {
-    strokeWeight(3);
-     translate(width/2,height/2);
- //vortex  
- for(int x = 0; x < total; x++) {
-  circ = 380;
-   float maxX = map(mouseX, 0, width, 0, 10);
-   float maxY = map(mouseY, 0, height, 0, 10);
-  
-   stroke(colour);
-   point(circ*cos(x*maxX*alpha),circ*sin(x*maxY*alpha));
-  }
-  alpha+=0.00006;
-  }
-   }
-  void keyPressed() {
-
-
-   if (key == 's') {
-    endRecord();
-   
-  }
-if (key== 'p'){
-  paused ^= true; 
-}
- 
-
-}
-
+}}
     </script>
     <canvas id="sketch" style="border: 1px solid black;"></canvas>
     
