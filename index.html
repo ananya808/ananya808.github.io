@@ -15,24 +15,46 @@
     
       /*  INSERT CODE HERE */
 
-float scale; // Declare a variable of the type "float" and name it "scale".
+var preload = function(){
+	myFont = loadFont("Lobster-Regular.ttf");
+};
 
-void setup() {
-  size(700, 700);   // Set the size of the screen to 700 by 700.
-  background(255); // Set the background to white. 
-}
+var setup = function() {
+	createCanvas(windowWidth, windowHeight);
+	noLoop();
+};
 
-void draw() {
+var drawRandomWord = function(words, colourNames, sizes){
+		var chosenColourName = random(colourNames);
+		fill(chosenColourName);
 
-  scale = random(50, 650); // Pick a random value between 50 and 650 and assign it to "scale".
-                           
-  fill(random(255),random(255),random(255),1); // Remove the fill color.   
-  stroke(0, 10); // Set the stroke to black. 
-  ellipse(350, 350, scale, scale); 
-  for (int i=0; i<70; i= i+1){
-    point(scale, 350);// Draw the ellipse and use "scale" to set the width and the height.
-  
-}}
+		var chosenWord = random(words);
+
+		textSize(random(sizes));
+		textFont(myFont);
+
+		var x = random(20, width * 0.8);
+		var y = random(100, height * 0.9);
+		text(chosenWord, x, y);
+};
+
+var draw = function() {
+	background(245, 105, 145);
+	
+	var colourNames = ["maroon", "skyblue", "black", "whitesmoke", "8BAFBC", "9F5643", "4F4D54" ];
+	var words = ["Real Madrid","Barcelona","Liverpool","Man United","Juventus","Bayern Munich","Juventus","Chelsea","Besiktas","Monaco","Roma","Spartak Moscova","Celtic","Benfica","Marseille","Ajax","Inter Milan","Totenham"];
+	var sizes = [15, 20, 10, 40, 60, 100];
+	
+	for (var i = 0; i < 100; i++){
+		drawRandomWord(words, colourNames, sizes);
+	}
+};
+
+var mousePressed = function(){
+	redraw();
+};  
+
+
     </script>
     <canvas id="sketch" style="border: 1px solid black;"></canvas>
     
